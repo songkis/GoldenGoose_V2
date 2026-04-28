@@ -331,7 +331,7 @@ class ExecutionPipeline:
 
                         # Dynamic Exit Update
                         bars_count = get_bars_since_entry(
-                            minute_df, position.get("매수일", "")
+                            stock_cd, position.get("매수일", ""), minute_df
                         )
                         # [Zero-Defect] Initialize current_sl for Time-Decay logic
                         current_sl = initial_sl
