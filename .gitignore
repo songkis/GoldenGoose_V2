@@ -1,0 +1,14 @@
+*.ui
+ui_*.py
+__pycache__
+PNG\
+*.png
+*.ico
+*.res
+*.db
+*.log
+*sqlite*
+*.txt
+*.exe
+*.csv
+db\
