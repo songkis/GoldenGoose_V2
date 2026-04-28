@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from util.CommUtils import *
+from .CommUtils import *
 import math
 import numpy as np
-
 
 def sanitize_dict(d):
     """
@@ -61,7 +60,6 @@ def sanitize_dict(d):
 
     return str(d)
 
-
 def align_quote_price(price, market_type=1):
     """
     [V10.0] KRX Hoga Tick Alignment
@@ -85,7 +83,6 @@ def align_quote_price(price, market_type=1):
 
     aligned = round(price / tick) * tick
     return int(aligned)
-
 
 def is_market_open():
     """
@@ -111,14 +108,11 @@ def is_market_open():
     end_time = datetime.time(15, 30, 0)
     return start_time <= current_time <= end_time
 
-
 _global_regime = "NEUTRAL"
-
 
 def get_global_regime():
     """전역 시장 국면 반환"""
     return _global_regime
-
 
 def set_global_regime(val):
     """전역 시장 국면 갱신"""
