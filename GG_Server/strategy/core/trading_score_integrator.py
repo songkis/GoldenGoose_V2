@@ -126,6 +126,8 @@ def assemble_decision_params(
     meets_basic = final_stock_eval.is_buy and trigger_hit_val
     custom_reason = trigger_msg if not trigger_hit_val else "Ready for AI Evaluation"
     
+    curr_vol_actual = float(latest_minute.get("거래량", 0.0)) if (tp == "intraday" and latest_minute) else float(latest.get("거래량", 0.0))
+
     stock_eval_ctx = StockEvaluation(
         ticker=ticker,
         current_price=current_price,
@@ -139,14 +141,20 @@ def assemble_decision_params(
         reason=custom_reason,
         intrinsic_grade=grade,
         market_regime=market_regime,
-        position_size_ratio=final_stock_eval.position_size_ratio,
-        vol_surge_ratio=float(trigger_info.vol_surge_ratio),
+        is_recovering_leader=getattr(final_stock_eval, "is_recovering_leader", False),
+        is_true_bounce=is_true_bounce,
+        expected_win_rate=0.8,
+        noise_ratio=float(intraday_v2.get("noise_ratio", 0.5)),
+        avg_volume_5=float(intraday_v2.get("avg_volume_5", 0.0)),
+        current_volume=curr_vol_actual,
         supply_intra=float(trigger_info.supply_intra),
         tick_acc=paramDic.tick_acc,
-        is_true_bounce=is_true_bounce,
-        noise_ratio=float(intraday_v2.get("noise_ratio", 0.5)),
-        avg_vol_5=float(intraday_v2.get("avg_volume_5", 0.0)),
-        curr_vol_actual=float(latest_minute.get("거래량", 0.0)) if (tp == "intraday" and latest_minute) else float(latest.get("거래량", 0.0))
+        recent_low=0.0,
+        rs_gap=final_stock_eval.rs_gap,
+        bb_dist=float(_breakout_info.get("bb_dist", 0.0)),
+        surge_rate=float(_breakout_info.get("surge_rate", 0.0)),
+        support_levels={},
+        atr_val=float(getattr(final_stock_eval, "atr_5m", getattr(final_stock_eval, "atr_pct", 2.0))),
     )
     
     return paramDic, market_ctx, stock_eval_ctx

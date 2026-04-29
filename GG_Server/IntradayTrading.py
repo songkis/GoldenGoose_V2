@@ -137,11 +137,6 @@ class IntradayTrading(object):
         self.shadow_manager = IntradayStateManager(self)
         self.db_writer = DBAsyncWriter(execute_batch_updates)
         self.account_guard = AccountGuard(start_equity=0)
-        # self.red_card_controller = StockRedCardController()
-        # self.portfolioManager = PortfolioManager(
-        #    total_slots=PARAMS.get("max_positions", 5)
-        # )
-
         # Communication
         try:
             self.zmq_sub = ZMQSubscriber(
