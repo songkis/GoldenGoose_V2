@@ -12,3 +12,4 @@ PNG\
 *.exe
 *.csv
 db\
+GG_Server/strategy/core/TradingComm.py.original_backup

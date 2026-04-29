@@ -1,7 +1,7 @@
 from typing import Dict, Any, Optional
 import pandas as pd
 import numpy as np
-from strategy.core.trading_models import (
+from core.schemas import (
     StockEvaluation,
     StockEvaluationResult,
     EntryDecisionDTO,

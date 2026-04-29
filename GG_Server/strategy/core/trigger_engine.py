@@ -8,7 +8,7 @@ from strategy.core.scoring_engine import (
     calculate_refined_supply_score_v6,
 )
 
-from strategy.core.trading_models import ExecutionTriggerResult
+from core.schemas import ExecutionTriggerResult
 
 logger = logging.getLogger(__name__)
 

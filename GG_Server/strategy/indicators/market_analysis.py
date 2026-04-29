@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import timedelta
-from strategy.core.trading_models import MarketConditions
+from core.schemas import MarketConditions
 
 # Import modularized functions
 from .market_status_io import fetch_trade_data, save_market_status_to_db
